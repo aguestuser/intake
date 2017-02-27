@@ -3,10 +3,12 @@ import { Field, reduxForm } from 'redux-form'
 import { RadioButton } from 'material-ui/RadioButton'
 import Divider from 'material-ui/Divider';
 import RaisedButton from 'material-ui/RaisedButton';
+import Subheader from 'material-ui/Subheader';
 import {MuiTextField, MuiRadioGroup} from './MuiFormComponents'
 import {validate} from './intakeFormValidation'
 import {Card, CardHeader, CardTitle} from 'material-ui/Card'
 import AppBar from 'material-ui/AppBar'
+import {SOURCE_CODE_LINK} from './constants'
 
 const styles = {
   card: {
@@ -26,7 +28,7 @@ const styles = {
   submit: {
     margin: '2rem',
     width: '10rem',
-  }
+  },
 }
 
 const IntakeForm = props => {
@@ -93,8 +95,8 @@ const IntakeForm = props => {
 
         <CardTitle>Client Visa Type:</CardTitle>
         <div>
-          {/*TODO(ag|2.22.17): these should actually be checkboxes, and should be `clientCitizenship`*/}
-          <Field style={styles.field} name="clientCountryOfOrigin" component={MuiRadioGroup}>
+
+          <Field style={styles.field} name="clientVisaType" component={MuiRadioGroup}>
             <RadioButton value="refugee" label="Refugee"/>
             <RadioButton value="greenCard" label="Legal Permanent Resident (Green Card Holder)"/>
             <RadioButton value="student" label="Student Visa"/>
@@ -114,6 +116,15 @@ const IntakeForm = props => {
           />
         </div>
 
+        <Divider style={styles.divider}/>
+      
+        <div>
+          <Subheader>
+             <a href={SOURCE_CODE_LINK}>Source Code</a>
+          </Subheader>
+        </div>
+
+      
       </form>
     </Card>
   )
