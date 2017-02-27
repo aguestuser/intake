@@ -1,0 +1,34 @@
+{
+  "name": "intake-receiver",
+  "version": "0.0.1",
+  "description": "simple restify server for handling responses to intake form",
+  "main": "app.js",
+  "scripts": {
+    "start": "babel-node ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crisisbox/intake-receiver.git"
+  },
+  "author": "aguestuser",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/crisisbox/intake-receiver/issues"
+  },
+  "homepage": "https://github.com/crisisbox/intake-receiver#readme",
+  "babel": {
+    "presets": [
+      "es2017"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-preset-latest": "^6.22.0"
+  },
+  "dependencies": {
+    "jsonfile": "^2.4.0",
+    "lodash": "^4.17.4",
+    "restify": "^4.3.0",
+    "underscore": "^1.8.3"
+  }
+}
