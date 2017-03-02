@@ -1,0 +1,17 @@
+.intake-form {
+
+  background-color: $c-page-bg;
+
+  .form-wrapper {
+
+    margin: 0 auto;
+    
+    @media( min-width: $bp-md ) {
+        max-width: $bp-sm;
+    }
+
+    @media( min-width: $bp-lg ) {
+      max-width: $bp-md;
+    }
+  }
+}

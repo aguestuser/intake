@@ -12,8 +12,6 @@ import {SOURCE_CODE_LINK} from './constants'
 
 const styles = {
   card: {
-    padding: '2rem',
-    margin: '2rem'
   },
   field: {
     marginLeft: '2rem'
@@ -35,98 +33,84 @@ const IntakeForm = props => {
   const { handleSubmit, pristine, submitting, reset } = props
   return (
 
-    <Card style={styles.card}>
-      <form onSubmit={data => handleSubmit(data).then(reset)}>
+    <div className="intake-form">
 
-        <AppBar title="Intake Form" />
+      <AppBar className="app-bar" title="Intake Form" />
 
-        <CardHeader style={styles.header}>Volunteer Information</CardHeader>
+      <Card className="form-wrapper" style={styles.card}>
+        <form onSubmit={data => handleSubmit(data).then(reset)}>
 
-        <div>
-          <Field style={styles.field} name="volunteerName" component={MuiTextField} label="Volunteer Name"/>
-        </div>
 
-        <div>
-          <Field style={styles.field} name="volunteerEmail" component={MuiTextField} label="Volunteer Email"/>
-        </div>
+          <section className="form-group">
+            <div className="field-group">
+              <h2 className="group-title">Volunteer Information</h2>
+              <Field name="volunteerName" component={MuiTextField} label="Volunteer Name"/>
+              <Field name="volunteerEmail" component={MuiTextField} label="Volunteer Email"/>
+            </div>
+          </section >
 
-        <Divider style={styles.divider}/>
+          <section className="form-group">
 
-        <CardHeader style={styles.header}>Client Information</CardHeader>
+            <h2 className="group-title">Client Information</h2>
 
-        <div>
-          <Field style={styles.field} name="clientName" component={MuiTextField} label="Client Name"/>
-        </div>
+            <div className="field-group">
+              <Field name="clientName" component={MuiTextField} label="Client Name"/>
+              <Field name="clientEmail" component={MuiTextField} label="Client Email"/>
+              <Field name="clientPhone" component={MuiTextField} label="Client Phone"/>
+            </div>
 
-        <div>
-          <Field style={styles.field} name="clientEmail" component={MuiTextField} label="Client Email"/>
-        </div>
+            <div className="field-group">
+              <h3 className="field-title">Client Country of Origin:</h3>
+              {/*TODO(ag|2.22.17): these should actually be checkboxes, and should be `clientCitizenship`*/}
+              <Field name="clientCountryOfOrigin" component={MuiRadioGroup}>
+                <RadioButton value="Iran" label="Iran"/>
+                <RadioButton value="Iraq" label="Iraq"/>
+                <RadioButton value="Libya" label="Libya"/>
+                <RadioButton value="Somalia" label="Somalia"/>
+                <RadioButton value="Sudan" label="Sudan"/>
+                <RadioButton value="Syria" label="Syria"/>
+                <RadioButton value="Yemen" label="Yemen"/>
+              </Field>
+              <Field name="airline" component={MuiTextField} label="Airline"/>
+              <Field name="flightNumber" component={MuiTextField} label="Flight Number"/>
+              {/*TODO(ag|2.22.17): this should be a date picker*/}
+              <Field name="travelDate" component={MuiTextField} label="Date of Travel"/>
+            </div>
 
-        <div>
-          <Field style={styles.field} name="clientPhone" component={MuiTextField} label="Client Phone"/>
-        </div>
+            <div className="field-group">
+              <h3 className="field-title">Client Visa Type:</h3>
+              <Field name="clientVisaType" component={MuiRadioGroup}>
+                <RadioButton value="refugee" label="Refugee"/>
+                <RadioButton value="greenCard" label="Legal Permanent Resident (Green Card Holder)"/>
+                <RadioButton value="student" label="Student Visa"/>
+                <RadioButton value="tourist" label="TouristVisa"/>
+                <RadioButton value="employment" label="Employment Visa"/>
+                <RadioButton value="special" label="Special Immigrant Visa"/>
+              </Field>
+            </div>
 
-        <CardTitle>Client Country of Origin:</CardTitle>
-        <div>
-          {/*TODO(ag|2.22.17): these should actually be checkboxes, and should be `clientCitizenship`*/}
-          <Field style={styles.field} name="clientCountryOfOrigin" component={MuiRadioGroup}>
-            <RadioButton value="Iran" label="Iran"/>
-            <RadioButton value="Iraq" label="Iraq"/>
-            <RadioButton value="Libya" label="Libya"/>
-            <RadioButton value="Somalia" label="Somalia"/>
-            <RadioButton value="Sudan" label="Sudan"/>
-            <RadioButton value="Syria" label="Syria"/>
-            <RadioButton value="Yemen" label="Yemen"/>
-          </Field>
-        </div>
+          </section>
 
-        <div>
-          <Field style={styles.field} name="airline" component={MuiTextField} label="Airline"/>
-        </div>
+          <section className="form-actions">
+            <RaisedButton
+              style={styles.submit}
+              type="submit"
+              label="Submit"
+              disabled={pristine || submitting}
+              primary
+            />
+          </section>
 
-        <div>
-          <Field style={styles.field} name="flightNumber" component={MuiTextField} label="Flight Number"/>
-        </div>
+        </form>
 
-        {/*TODO(ag|2.22.17): this should be a date picker*/}
-        <div>
-          <Field style={styles.field} name="travelDate" component={MuiTextField} label="Date of Travel"/>
-        </div>
-
-        <CardTitle>Client Visa Type:</CardTitle>
-        <div>
-
-          <Field style={styles.field} name="clientVisaType" component={MuiRadioGroup}>
-            <RadioButton value="refugee" label="Refugee"/>
-            <RadioButton value="greenCard" label="Legal Permanent Resident (Green Card Holder)"/>
-            <RadioButton value="student" label="Student Visa"/>
-            <RadioButton value="tourist" label="TouristVisa"/>
-            <RadioButton value="employment" label="Employment Visa"/>
-            <RadioButton value="special" label="Special Immigrant Visa"/>
-          </Field>
-        </div>
-
-        <div>
-          <RaisedButton
-            style={styles.submit}
-            type="submit"
-            label="Submit"
-            disabled={pristine || submitting}
-            primary
-          />
-        </div>
-
-        <Divider style={styles.divider}/>
-      
-        <div>
+        <footer className="page-footer">
           <Subheader>
              <a href={SOURCE_CODE_LINK}>Source Code</a>
           </Subheader>
-        </div>
+        </footer>
 
-      
-      </form>
-    </Card>
+      </Card>
+    </div>
   )
 }
 
