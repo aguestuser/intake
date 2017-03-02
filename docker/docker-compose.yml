@@ -1,0 +1,43 @@
+# ownCloud with MariaDB/MySQL
+# Access via "http://localhost:8080" (or "http://$(docker-machine ip):8080" if using docker-machine)
+# During initial ownCloud setup, select "Storage & database" --> "Configure the database" --> "MySQL/MariaDB"
+# Database user: root
+# Database password: example
+# Database name: pick any name
+# Database host: replace "localhost" with "mysql"
+
+version: '2'
+
+services:
+
+  intake:
+    image: crisisbox/intake
+    privileged: true
+    ports:
+      - 3001:3001
+    depends_on:
+      - owncloud
+    
+  owncloud:
+    image: owncloud
+    volumes:
+      - ./owncloud-data:/var/www/html
+    depends_on:
+      - mysql
+    
+  mysql:
+    image: mariadb
+    volumes:
+      - ./db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+
+  nginx:
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx-dev.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - owncloud
+      - intake
