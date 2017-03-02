@@ -84,7 +84,7 @@ module.exports = {
       'react-native': 'react-native-web'
     }
   },
-  
+
   module: {
     // First, run the linter.
     // It's important to do this before Babel processes the JS.
@@ -110,7 +110,8 @@ module.exports = {
           /\.(js|jsx)$/,
           /\.css$/,
           /\.json$/,
-          /\.svg$/
+          /\.svg$/,
+          /\.scss$/
         ],
         loader: 'url',
         query: {
@@ -122,8 +123,12 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
-        loader: 'babel',
-        
+        loader: 'babel'
+      },
+      // sass it up
+      {
+        test: /\.scss/,
+        loaders: ['style','css','sass']
       },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
@@ -139,6 +144,7 @@ module.exports = {
       // in the main CSS file.
       {
         test: /\.css$/,
+        // @todo [TdB 03.02.2017] , how do we get the final css in static/css instead of build root?
         loader: ExtractTextPlugin.extract(
           'style',
           'css?importLoaders=1!postcss',
@@ -164,7 +170,7 @@ module.exports = {
       // Remember to add the new extension(s) to the "url" loader exclusion list.
     ]
   },
-  
+
   // We use PostCSS for autoprefixing only.
   postcss: function() {
     return [
