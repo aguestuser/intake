@@ -10,25 +10,6 @@ import {Card, CardHeader, CardTitle} from 'material-ui/Card'
 import AppBar from 'material-ui/AppBar'
 import {SOURCE_CODE_LINK} from './constants'
 
-const styles = {
-  card: {
-  },
-  field: {
-    marginLeft: '2rem'
-  },
-  header: {
-    marginLeft: '-6rem'
-  },
-  divider: {
-    marginTop: '2rem',
-    marginBottom: '1rem',
-  },
-  submit: {
-    margin: '2rem',
-    width: '10rem',
-  },
-}
-
 const IntakeForm = props => {
   const { handleSubmit, pristine, submitting, reset } = props
   return (
@@ -37,7 +18,7 @@ const IntakeForm = props => {
 
       <AppBar className="app-bar" title="Intake Form" />
 
-      <Card className="form-wrapper" style={styles.card}>
+      <Card className="form-wrapper">
         <form onSubmit={data => handleSubmit(data).then(reset)}>
 
 
@@ -93,7 +74,6 @@ const IntakeForm = props => {
 
           <section className="form-actions">
             <RaisedButton
-              style={styles.submit}
               type="submit"
               label="Submit"
               disabled={pristine || submitting}
