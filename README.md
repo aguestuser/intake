@@ -1,45 +1,38 @@
 # Crisis Box Intake
 
-* react intake form with lightweight node rest api server for capturing rapid response intake data
-* see [kanban board](https://apps.unite.tech/grain/XLesz7hbLomKAtL2AfzT53) for details
+* An intake form and a signup form implemented in `React`
+* A server which receives the submission and converts them to `odt` files for
+  further editting, implemented in NodeJS.
+* See [kanban board](https://apps.unite.tech/grain/XLesz7hbLomKAtL2AfzT53) for details
 
-# Getting started
-
-* Run the following in your favorite shell:
+# Setup
 
 ```
-$ git clone git@github.com:crisisbox/intake.git
-$ cd intake
-$ pushd `pwd`
-$ cd client
-$ ./install.sh
-$ cd ../server
-$ ./install.sh
-$ popd
+sudo apt-get nvm pandoc
+git clone git@github.com:crisisbox/intake.git
+cd intake
+./install.sh
 ```
 
 # Running locally
 
-* start the server:
+* Start the server:
 
 ```
-$ cd <path/to>/intake/server
-$ nvm use < .nvmrc
-$ npm start
+cd server
+npm start
 ```
 
-* start the client:
+* then start the client:
 
 ```
-$ cd <path/to>/intake/client
-$ nvm use < .nvmrc
-$ npm start
+cd client
+npm start
 ```
 
-* point your favorite browser to `localhost:3000`
-* make a submission!
+* then point your favorite browser to `localhost:3000/intake` or `localhost:3000/signup`
+* then make a submission!
 
-# Dependencies
+# Testing
 
-* nvm
-* pandoc
+There are no tests at the moment.

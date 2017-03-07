@@ -33,6 +33,7 @@ const styles = {
 
 const IntakeForm = props => {
   const { handleSubmit, pristine, submitting, reset } = props
+
   return (
 
     <Card style={styles.card}>
@@ -117,14 +118,14 @@ const IntakeForm = props => {
         </div>
 
         <Divider style={styles.divider}/>
-      
+
         <div>
           <Subheader>
              <a href={SOURCE_CODE_LINK}>Source Code</a>
           </Subheader>
         </div>
 
-      
+
       </form>
     </Card>
   )
