@@ -78,7 +78,6 @@ const IntakeForm = props => {
   )
 }
 
-
 export default
 reduxForm({
   form: 'IntakeForm',
