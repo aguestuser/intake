@@ -1,0 +1,10 @@
+.field-group {
+
+  @extend %clearfix;
+  clear: both;
+  margin-bottom: 4em;
+
+  > div {
+    margin-right: 1em;
+  }
+}

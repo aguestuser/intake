@@ -53,7 +53,7 @@ module.exports = {
   // In production, we only want to load the polyfills and the app code.
   entry: [
     require.resolve('./polyfills'),
-    paths.appIndexJs
+    paths.appIndexJs,
   ],
   output: {
     // The build folder.
@@ -64,7 +64,7 @@ module.exports = {
     filename: 'static/js/[name].[chunkhash:8].js',
     chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
     // We inferred the "public path" (such as / or /my-project) from homepage.
-    publicPath: publicPath
+    publicPath: publicPath,
   },
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
@@ -81,10 +81,10 @@ module.exports = {
     alias: {
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
-      'react-native': 'react-native-web'
+      'react-native': 'react-native-web',
     }
   },
-  
+
   module: {
     // First, run the linter.
     // It's important to do this before Babel processes the JS.
@@ -92,7 +92,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         loader: 'eslint',
-        include: paths.appSrc
+        include: paths.appSrc,
       }
     ],
     loaders: [
@@ -110,12 +110,13 @@ module.exports = {
           /\.(js|jsx)$/,
           /\.css$/,
           /\.json$/,
-          /\.svg$/
+          /\.svg$/,
+          /\.scss$/,
         ],
         loader: 'url',
         query: {
           limit: 10000,
-          name: 'static/media/[name].[hash:8].[ext]'
+          name: 'static/media/[name].[hash:8].[ext]',
         }
       },
       // Process JS with Babel.
@@ -123,7 +124,11 @@ module.exports = {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
         loader: 'babel',
-        
+      },
+      // sass it up
+      {
+        test: /\.scss/,
+        loaders: ['style','css','sass'],
       },
       // The notation here is somewhat confusing.
       // "postcss" loader applies autoprefixer to our CSS.
@@ -139,10 +144,11 @@ module.exports = {
       // in the main CSS file.
       {
         test: /\.css$/,
+        // @todo [TdB 03.02.2017] , how do we get the final css in static/css instead of build root?
         loader: ExtractTextPlugin.extract(
           'style',
           'css?importLoaders=1!postcss',
-          extractTextPluginOptions
+          extractTextPluginOptions,
         )
         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
       },
@@ -150,21 +156,21 @@ module.exports = {
       // allow it implicitly so we also enable it.
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json',
       },
       // "file" loader for svg
       {
         test: /\.svg$/,
         loader: 'file',
         query: {
-          name: 'static/media/[name].[hash:8].[ext]'
+          name: 'static/media/[name].[hash:8].[ext]',
         }
       }
       // ** STOP ** Are you adding a new loader?
       // Remember to add the new extension(s) to the "url" loader exclusion list.
     ]
   },
-  
+
   // We use PostCSS for autoprefixing only.
   postcss: function() {
     return [
@@ -199,7 +205,7 @@ module.exports = {
         keepClosingSlash: true,
         minifyJS: true,
         minifyCSS: true,
-        minifyURLs: true
+        minifyURLs: true,
       }
     }),
     // Makes some environment variables available to the JS code, for example:
@@ -222,7 +228,7 @@ module.exports = {
       },
       output: {
         comments: false,
-        screw_ie8: true
+        screw_ie8: true,
       }
     }),
     // Note: this won't work without ExtractTextPlugin.extract(..) in `loaders`.
@@ -231,7 +237,7 @@ module.exports = {
     // to their corresponding output file so that tools can pick it up without
     // having to parse `index.html`.
     new ManifestPlugin({
-      fileName: 'asset-manifest.json'
+      fileName: 'asset-manifest.json',
     })
   ],
   // Some libraries import Node modules but don't use them in the browser.
@@ -239,6 +245,6 @@ module.exports = {
   node: {
     fs: 'empty',
     net: 'empty',
-    tls: 'empty'
+    tls: 'empty',
   }
 };
