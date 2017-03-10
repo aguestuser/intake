@@ -4,8 +4,5 @@
 set -veuo pipefail
 IFS=$'\n\t'
 
-. ~/.nvm/nvm.sh
-
-nvm install
-nvm use < .nvmrc
-npm install
+(cd server; ./install.sh)
+(cd client; ./install.sh)
