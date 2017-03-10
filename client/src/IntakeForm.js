@@ -1,12 +1,11 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { RadioButton } from 'material-ui/RadioButton'
-import Divider from 'material-ui/Divider';
 import RaisedButton from 'material-ui/RaisedButton';
 import Subheader from 'material-ui/Subheader';
 import {MuiTextField, MuiRadioGroup} from './MuiFormComponents'
 import {validate} from './intakeFormValidation'
-import {Card, CardHeader, CardTitle} from 'material-ui/Card'
+import {Card} from 'material-ui/Card'
 import AppBar from 'material-ui/AppBar'
 import {SOURCE_CODE_LINK} from './constants'
 

@@ -18,7 +18,7 @@ const validateRequiredFields = (values, requiredFields) => (errors) =>
   requiredFields.reduce((_errors, field) =>
       values[field]
         ? _errors
-        : ({ ..._errors, [field]: 'Required' })
+        : ({ ..._errors, [field]: '<div class="!!!">Required</div>' })
     , errors)
 
 const validateEmail = (values, field) => (errors) =>

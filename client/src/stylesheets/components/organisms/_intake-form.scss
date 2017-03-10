@@ -1,11 +1,12 @@
 .intake-form {
 
   background-color: $c-page-bg;
-
+  margin-top: 4em;
+  
   .form-wrapper {
 
     margin: 0 auto;
-    
+
     @media( min-width: $bp-md ) {
         max-width: $bp-sm;
     }
