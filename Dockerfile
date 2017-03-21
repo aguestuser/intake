@@ -4,8 +4,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update && apt-get install -y pandoc davfs2 rsync
 
 RUN mkdir /cb
-RUN git clone https://github.com/crisisbox/intake-form.git /cb/intake-form
-RUN git clone https://github.com/crisisbox/intake-receiver.git /cb/intake-receiver
+COPY client /cb/intake-form
+COPY server /cb/intake-receiver
 RUN npm install -g babel-cli
 RUN cd /cb/intake-form && npm install
 RUN cd /cb/intake-receiver && npm install

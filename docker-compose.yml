@@ -14,21 +14,22 @@ services:
     image: crisisbox/intake
     privileged: true
     ports:
+      - 3000:3000
       - 3001:3001
     depends_on:
       - owncloud
-    
+
   owncloud:
     image: owncloud
     volumes:
-      - ./owncloud-data:/var/www/html
+      - ./docker/owncloud-data:/var/www/html
     depends_on:
       - mysql
-    
+
   mysql:
     image: mariadb
     volumes:
-      - ./db-data:/var/lib/mysql
+      - ./docker/db-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: root
 
@@ -37,7 +38,7 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./nginx-dev.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx-dev.conf:/etc/nginx/nginx.conf
     depends_on:
       - owncloud
       - intake
