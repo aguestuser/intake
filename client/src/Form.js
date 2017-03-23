@@ -2,7 +2,7 @@ import React from 'react'
 import IntakeForm from './IntakeForm'
 import SignupForm from './SignupForm'
 
-const endpoint = 'http://172.30.30.153:3001/'
+const endpoint = 'http://crisisbox.server.dev/'
 
 const onSubmit = formName => { return data => {
   fetch(endpoint + formName, {

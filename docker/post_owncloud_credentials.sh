@@ -14,4 +14,4 @@ echo "Setting up owncloud..."
 
 curl_data="install=true&adminlogin=${username}&adminpass=${password}&adminpass-clone=admin&directory=%2Fvar%2Fwww%2Fhtml%2Fdata&dbtype=mysql&dbuser=root&dbpass=root&dbpass-clone=root&dbname=crisisbox&dbhost=mysql"
 
-curl -s http://owncloud.crisisbox.dev/index.php -H 'Host: owncloud.crisisbox.dev' --data $curl_data
+curl http://owncloud.crisisbox.dev/index.php -H 'Host: owncloud.crisisbox.dev' --data $curl_data > /dev/null

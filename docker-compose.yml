@@ -10,12 +10,16 @@ version: '2'
 
 services:
 
-  intake:
-    image: crisisbox/intake
+  client:
+    #image: crisisbox/client
+    build: client
+    depends_on:
+      - owncloud
+
+  server:
+    #image: crisisbox/server
+    build: server
     privileged: true
-    ports:
-      - 3000:3000
-      - 3001:3001
     depends_on:
       - owncloud
 
@@ -41,4 +45,5 @@ services:
       - ./docker/nginx-dev.conf:/etc/nginx/nginx.conf
     depends_on:
       - owncloud
-      - intake
+      - server
+      - client
